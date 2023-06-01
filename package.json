@@ -1,0 +1,22 @@
+{
+  "name": "api_armazenamento",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./bin/server.js",
+    "start": "node ./bin/server.js"
+  },
+  "keywords": [],
+  "author": "Amanda Santos and Aurelio Barreto",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "config": "^3.3.9",
+    "debug": "^4.3.4",
+    "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
+    "http": "^0.0.1-security",
+    "nodemon": "^2.0.22"
+  }
+}
