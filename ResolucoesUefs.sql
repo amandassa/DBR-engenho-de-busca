@@ -10,12 +10,12 @@ CREATE TABLE TERMOS (
 
 CREATE TABLE RESOLUCOES (
   id INT NOT NULL AUTO_INCREMENT,
-  numero VARCHAR(50),
   ano VARCHAR(50),
-  link VARCHAR(255),
-  usuario VARCHAR(100),
   orgao VARCHAR(100),
   descricao VARCHAR(255),
+  numero VARCHAR(50),
+  link VARCHAR(255),
+  usuario VARCHAR(100),
   PRIMARY KEY (id)
 );
 
