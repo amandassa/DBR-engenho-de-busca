@@ -1,6 +1,6 @@
-const app = require('../src/app.js');
-const http = require('http');
-const debug = require('debug')('DBR-engenho-de-busca:server');
+import app  from '../src/app.js';
+import http  from 'http';
+//import debug from ('debug')('DBR-engenho-de-busca:server');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
@@ -36,7 +36,7 @@ function onError(error) {
 
     switch (error.code) {
         case 'EACCES':
-            console.error(bind + ' requires elevated privileges');
+            console.error(bind + ' s elevated privileges');
             process.exit(1);
             break;
         case 'EADDRINUSE':
@@ -53,5 +53,6 @@ function onListening() {
     const bind = typeof addr === 'string'?
         'Pipe ' + addr :
         'Port ' + addr.port;
-    debug('Listening on ' + bind);
+        //console.log('Listening on ' + bind)
+    //debug('Listening on ' + bind);
 }

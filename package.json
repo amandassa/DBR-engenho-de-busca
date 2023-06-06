@@ -23,5 +23,6 @@
     "nodemon": "^2.0.22",
     "stopword": "^2.0.8",
     "tokenizr": "^1.6.9"
-  }
+  },
+  "type": "module"
 }

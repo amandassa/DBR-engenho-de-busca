@@ -1,4 +1,4 @@
-const mysql = require('mysql2');
+import mysql from 'mysql2';
 
 const con = mysql.createConnection({
     host: 'localhost',
@@ -6,7 +6,7 @@ const con = mysql.createConnection({
     password: '123456',
     database: 'resolucoesuefs'
 })
-exports.cadastrarResolucao = async (req, res, next) => {
+const cadastrarResolucao = async (req, res, next) => {
     const { ano, data, reitor, texto, cabecalho, numero, link, email_usuario } = req.body;
     console.log(ano, data, reitor, texto, cabecalho, numero, link, email_usuario)
     console.log((ano))
@@ -41,3 +41,5 @@ exports.cadastrarResolucao = async (req, res, next) => {
     
     
 };
+
+export default {cadastrarResolucao}

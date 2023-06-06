@@ -1,11 +1,11 @@
-const express = require('express');
+import express from'express';
 const router = express.Router();
-const path = require('path');
-const controller = require('../controllers/resolucoes-controller')
+//import path from 'path';
+import controller from '../controllers/resolucoes-controller.js'
 
  router.get('/', (req ,res, next) => {    
     res.status(200).send("api armazenamento...")
 });
 router.post('/cadastrarResolucao', controller.cadastrarResolucao)
 
-module.exports = router;
+export default router;

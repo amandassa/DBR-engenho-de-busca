@@ -4,7 +4,7 @@ USE ResolucoesUefs;
 
 CREATE TABLE TERMOS (
   id INT NOT NULL AUTO_INCREMENT,
-  term VARCHAR(255),
+  term UNIQUE VARCHAR(255),
   PRIMARY KEY (id)
 );
 
