@@ -1,5 +1,5 @@
 {
-  "name": "api_armazenamento",
+  "name": "DBR-engenho-de-busca",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -18,9 +18,10 @@
     "express-fileupload": "^1.4.0",
     "fs": "^0.0.1-security",
     "http": "^0.0.1-security",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.3.3",
     "nodemon": "^2.0.22",
     "stopword": "^2.0.8",
     "tokenizr": "^1.6.9"
-  },
-  "type": "module"
+  }
 }

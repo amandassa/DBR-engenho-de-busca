@@ -1,7 +1,6 @@
-const app = require('../src/app');
+const app = require('../src/app.js');
 const http = require('http');
-const debug = require('debug')('api_armazenamento:server');
-
+const debug = require('debug')('DBR-engenho-de-busca:server');
 
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
