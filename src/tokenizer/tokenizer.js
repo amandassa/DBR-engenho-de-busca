@@ -2,7 +2,7 @@ import Tokenizr from "tokenizr"
 import { removeStopwords, porBr, por } from 'stopword'
 import { readFileSync } from 'fs'
 
-const data = readFileSync('src/tokenizer/stopwords.json', 'utf8');
+const data = readFileSync('stopwords.json', 'utf8');
 const jsonData = JSON.parse(data);
 const stopwords = jsonData['words']
 
@@ -11,7 +11,7 @@ const stopwords = jsonData['words']
  * @param {*} text 
  * @returns array com termos
 */
-function tokenizer (text) {
+export default function tokenizer (text) {
     let lexer = new Tokenizr()
 
     lexer.rule(/[^\s\p{P}\p{S}]+/u, (ctx, match) => {
@@ -62,5 +62,3 @@ function tokenizer (text) {
     
     return removeStopwords(tokens, stopwords)
 }
-
-export default { tokenizer }
