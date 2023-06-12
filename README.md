@@ -56,7 +56,7 @@ utilize para seus calculos:
 
 <b>Cálculo do WD: 
 
-<img src="https://latex.codecogs.com/svg.latex?\sqrt{(1 + \log(key)^2}" alt="Equation">
+<img src="[https://latex.codecogs.com/svg.latex?\sqrt{(1 + \log(key)^2](https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png](https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/eq.png)}" alt="Equation">
  <ul>
 <li> termos</li>
 </ul>
@@ -71,7 +71,7 @@ Um documento diz respeito a um termo específico presente em uma resolução e q
 
 <b>Diagrama de Relacionamentos do Banco
 
-<img alt="Diagrama de Relacionamentos" href="https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png](https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png"/>
+<img alt="Diagrama de Relacionamentos" src="https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png](https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png"/>
     
 </div>
 
