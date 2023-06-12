@@ -11,7 +11,7 @@ const stopwords = jsonData['words']
  * @param {*} text 
  * @returns array com termos
 */
-export default function tokenizer (text) {
+function tokenizer (text) {
     let lexer = new Tokenizr()
 
     lexer.rule(/\\[ntrf]/, (ctx, match) => {
@@ -70,3 +70,4 @@ export default function tokenizer (text) {
     
     return removeStopwords(tokens, stopwords)
 }
+export default {tokenizer}
