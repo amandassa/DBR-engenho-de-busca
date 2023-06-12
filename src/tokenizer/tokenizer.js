@@ -14,12 +14,18 @@ const stopwords = jsonData['words']
 export default function tokenizer (text) {
     let lexer = new Tokenizr()
 
+    lexer.rule(/\\[ntrf]/, (ctx, match) => {
+        ctx.ignore()
+    })
+
     lexer.rule(/[^\s\p{P}\p{S}]+/u, (ctx, match) => {
         ctx.accept("word", match[0]);
     });
+
     lexer.rule(/\/\/[^\r\n]*\r?\n/u, (ctx, match) => {
         ctx.ignore()
     })
+
     lexer.rule(/[\f\t\r\n]+/, (ctx, match) => {
         ctx.ignore()
     })
@@ -56,8 +62,10 @@ export default function tokenizer (text) {
 
     let  tokens = []
     var t = ''
-    while ((t =lexer.token()) != null) {
-        tokens.push(t.text)
+    while ((t = lexer.token()) != null) {
+        if (t.text !== "") {
+            tokens.push(t.text)
+        }
     }
     
     return removeStopwords(tokens, stopwords)
