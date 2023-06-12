@@ -71,7 +71,7 @@ Um documento diz respeito a um termo específico presente em uma resolução e q
 
 <b>Diagrama de Relacionamentos do Banco
 
-<img alt="Diagrama de Relacionamentos" href="https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png"/>
+<img alt="Diagrama de Relacionamentos" href="https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png](https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png"/>
     
 </div>
 
