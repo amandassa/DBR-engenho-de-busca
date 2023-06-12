@@ -56,7 +56,7 @@ utilize para seus calculos:
 
 <b>Cálculo do WD: 
 
-<img src="https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png](https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/eq.png" alt="Equation">
+<img src="https://github.com/amandassa/DBR-engenho-de-busca/blob/master/imgs/diagrama.png" alt="Equation">
  <ul>
 <li> termos</li>
 </ul>
