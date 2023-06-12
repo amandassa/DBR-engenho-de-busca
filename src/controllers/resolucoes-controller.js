@@ -61,7 +61,7 @@ const obterIdsTermoResolucao = (termo, numero) => {
         if (error) {
           reject(error);
         } else {
-          resolve(rows);
+          resolve(rows.length > 1? rows : []);
         }
       });
     });
@@ -133,13 +133,20 @@ const inserirDocumento = (idResolucao, idTermo, frequencia) => {
             }            
 
             for (const [termo, frequencia] of dict.entries()) {  
-                const rows = await obterIdsTermoResolucao(termo, numero);              
-                const idTermo = rows[0].id;
-                const idResolucao = rows[1].id;
-                console.log(rows[0].id, rows[1].id)
-            
-                // Insere o documento no banco de dados
-                await inserirDocumento(idResolucao, idTermo, frequencia);
+                const rows = await obterIdsTermoResolucao(termo, numero);
+                if(termo == ""){
+                    console.log('---------- TEM VAZIO !!! ----------')
+                }
+                if(rows.length != 0) {
+                    const idTermo = rows[0].id;
+                    const idResolucao = rows[1].id;
+                    console.log(rows[0].id, rows[1].id)                
+                    // Insere o documento no banco de dados
+                    await inserirDocumento(idResolucao, idTermo, frequencia);
+                }else{
+                    console.log("NÃO ACHOU ID")
+                }             
+                
             }
             res.status(201).send({
                 message: 'Resolucao cadastrada com sucesso',
