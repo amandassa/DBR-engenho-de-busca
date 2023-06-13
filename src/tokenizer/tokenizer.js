@@ -3,6 +3,7 @@ import { removeStopwords, porBr, por } from 'stopword'
 import { readFileSync } from 'fs'
 
 const data = readFileSync('src/tokenizer/stopwords.json', 'utf8');
+// const data = readFileSync('stopwords.json', 'utf8');
 const jsonData = JSON.parse(data);
 const stopwords = jsonData['words']
 

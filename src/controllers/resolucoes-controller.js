@@ -1,5 +1,6 @@
 import con from '../config/config.js'
 import tokenizer from '../tokenizer/tokenizer.js';
+
 // Verifica se a resolução já existe no banco de dados
 const verificarResolucaoExistente = (numero) => {
     return new Promise((resolve, reject) => {
@@ -38,6 +39,18 @@ const verificarTermoExistente = (termo) => {
       });
     });
   };
+
+const buscarTermos = () => {
+  let termos = new Map();
+  con.execute('SELECT * FROM termos', (error, rows) => {
+    if (error) {
+      reject(error);
+    } else {
+      // resolve(rows[0].total > 0);
+      console.log(rows)
+    }
+  });
+}
 
   // Insere um novo termo no banco de dados
 const inserirTermo = (termo) => {
@@ -85,84 +98,85 @@ const inserirDocumento = (idResolucao, idTermo, frequencia) => {
 
   const cadastrarResolucao = async (req, res, next) => {
   
+    buscarTermos()
     //const { ano, data, reitor, texto, cabecalho, numero, link, email_usuario } = req.body;
-    if (req.body.ano && req.body.data  && req.body.reitor  && req.body.texto  && req.body.cabecalho  && req.body.numero  && req.body.link  && req.body.email_usuario) {
-        const { ano, data, reitor, texto, cabecalho, numero, link, email_usuario } = req.body;
-        try {
-        // Verifica se a resolução já existe no banco de dados
-        const resolucaoExistente = await verificarResolucaoExistente(numero);    
+    // if (req.body.ano && req.body.data  && req.body.reitor  && req.body.texto  && req.body.cabecalho  && req.body.numero  && req.body.link  && req.body.email_usuario) {
+    //     const { ano, data, reitor, texto, cabecalho, numero, link, email_usuario } = req.body;
+    //     try {
+    //     // Verifica se a resolução já existe no banco de dados
+    //     const resolucaoExistente = await verificarResolucaoExistente(numero);    
     
-        if (!resolucaoExistente) {
-            const dataAtual = new Date();
-            const dia = String(dataAtual.getDate()).padStart(2, '0');
-            const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Janeiro é o mês 0
-            const ano1 = dataAtual.getFullYear();
-            const dataInsercao = `${dia}/${mes}/${ano1}`;
+    //     if (!resolucaoExistente) {
+    //         const dataAtual = new Date();
+    //         const dia = String(dataAtual.getDate()).padStart(2, '0');
+    //         const mes = String(dataAtual.getMonth() + 1).padStart(2, '0'); // Janeiro é o mês 0
+    //         const ano1 = dataAtual.getFullYear();
+    //         const dataInsercao = `${dia}/${mes}/${ano1}`;
         
-            const result = tokenizer.tokenizer(texto);
-            const dict = new Map();
+    //         const result = tokenizer.tokenizer(texto);
+    //         const dict = new Map();
         
-            result.forEach(e => {
-            if (!dict.has(e)) {
-                dict.set(e, 1);
-            } else {
-                dict.set(e, dict.get(e) + 1);
-            }
-            });
+    //         result.forEach(e => {
+    //         if (!dict.has(e)) {
+    //             dict.set(e, 1);
+    //         } else {
+    //             dict.set(e, dict.get(e) + 1);
+    //         }
+    //         });
         
-            let wd = 0;
-            dict.forEach((key, value) => {
-                if (key > 0) {
-                    wd += Math.pow(1 + Math.log(key), 2);
-                }
-            });
-            wd = Math.sqrt(wd);
+    //         let wd = 0;
+    //         dict.forEach((key, value) => {
+    //             if (key > 0) {
+    //                 wd += Math.pow(1 + Math.log(key), 2);
+    //             }
+    //         });
+    //         wd = Math.sqrt(wd);
         
-            // Insere a resolução no banco de dados
-            await inserirResolucao(ano, data, dataInsercao, reitor, texto, cabecalho, numero, link, email_usuario, wd);
+    //         // Insere a resolução no banco de dados
+    //         await inserirResolucao(ano, data, dataInsercao, reitor, texto, cabecalho, numero, link, email_usuario, wd);
            
-            // Insere os termos no banco de dados
-            for (const [termo, frequencia] of dict.entries()) {
-                const termoExistente = await verificarTermoExistente(termo);
+    //         // Insere os termos no banco de dados
+    //         for (const [termo, frequencia] of dict.entries()) {
+    //             const termoExistente = await verificarTermoExistente(termo);
             
-                if (!termoExistente) {
-                    console.log('nao existe o termo: ', termo)
-                    await inserirTermo(termo);
-                }  
+    //             if (!termoExistente) {
+    //                 console.log('nao existe o termo: ', termo)
+    //                 await inserirTermo(termo);
+    //             }  
    
-            }            
+    //         }            
 
-            for (const [termo, frequencia] of dict.entries()) {  
-                const rows = await obterIdsTermoResolucao(termo, numero);
-                if(termo == ""){
-                    console.log('---------- TEM VAZIO !!! ----------')
-                }
-                if(rows.length != 0) {
-                    const idTermo = rows[0].id;
-                    const idResolucao = rows[1].id;
-                    console.log(rows[0].id, rows[1].id)                
-                    // Insere o documento no banco de dados
-                    await inserirDocumento(idResolucao, idTermo, frequencia);
-                }else{
-                    console.log("NÃO ACHOU ID")
-                }             
+    //         for (const [termo, frequencia] of dict.entries()) {  
+    //             const rows = await obterIdsTermoResolucao(termo, numero);
+    //             if(termo == ""){
+    //                 console.log('---------- TEM VAZIO !!! ----------')
+    //             }
+    //             if(rows.length != 0) {
+    //                 const idTermo = rows[0].id;
+    //                 const idResolucao = rows[1].id;
+    //                 console.log(rows[0].id, rows[1].id)                
+    //                 // Insere o documento no banco de dados
+    //                 await inserirDocumento(idResolucao, idTermo, frequencia);
+    //             }else{
+    //                 console.log("NÃO ACHOU ID")
+    //             }             
                 
-            }
-            res.status(201).send({
-                message: 'Resolucao cadastrada com sucesso',
-            });
-        } else {
-            res.status(409).json({ error: 'Erro, já existe esta resolução em nossa base de dados' });
-        }
+    //         }
+    //         res.status(201).send({
+    //             message: 'Resolucao cadastrada com sucesso',
+    //         });
+    //     } else {
+    //         res.status(409).json({ error: 'Erro, já existe esta resolução em nossa base de dados' });
+    //     }
         
-        } catch (error) {
-            console.error(error);
-            res.status(500).json({ error: 'Erro ao inserir dados' });
-        }
+    //     } catch (error) {
+    //         console.error(error);
+    //         res.status(500).json({ error: 'Erro ao inserir dados' });
+    //     }
 
-    }else{
-        res.status(400).json({ error: 'Params Required' });
-    }
+    // }else{
+    //     res.status(400).json({ error: 'Params Required' });
+    // }
  };
 
  export default {cadastrarResolucao}
