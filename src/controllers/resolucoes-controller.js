@@ -42,14 +42,18 @@ const verificarTermoExistente = (termo) => {
 
 const buscarTermos = () => {
   let termos = new Map();
-  con.execute('SELECT * FROM termos', (error, rows) => {
-    if (error) {
-      reject(error);
-    } else {
-      // resolve(rows[0].total > 0);
-      console.log(rows)
-    }
-  });
+  return new Promise ((resolve, reject) => {
+    con.execute('SELECT * FROM termos', (error, rows) => {
+      if (error) {
+        reject(error);
+      } else {
+        rows.forEach(objeto => {
+          termos.set(objeto['id'], objeto['term']);
+        });
+        resolve(termos);
+      }
+    });
+  })
 }
 
   // Insere um novo termo no banco de dados
